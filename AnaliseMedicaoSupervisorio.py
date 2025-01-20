@@ -42,7 +42,7 @@ print(title)
  
 try:
     
- login = driver.find_element(By.ID, "login").send_keys("caroline.qintess")
+ login = driver.find_element(By.ID, "login").send_keys("caroline")
  senha = driver.find_element(By.ID, "senha").send_keys("Admin123")
  button = driver.find_element(By.ID, "button3").click()
  
@@ -64,7 +64,10 @@ grupoFaturamento = driver.find_element(By.ID, "grupoFaturamento")
 selectOption = Select(grupoFaturamento)
 selectOption.select_by_value('1086')
 
-# anormalidade1 = driver.find_element(By.ID, "anormalidade")
+time.sleep(20)
+
+
+
 
 # selectOption4 = Select(anormalidade1)
 # selectOption4.select_by_value("33")
@@ -87,6 +90,8 @@ selectOption1.select_by_value('2')
 comAnormalidade = driver.find_element(By.CSS_SELECTOR, "div.row:nth-child(5) > div:nth-child(1) > fieldset:nth-child(1) > div:nth-child(2) > label:nth-child(2)")
 comAnormalidade.click()
 
+
+anormalidade1 = driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div/div[2]/form/div/div[2]/div[2]/div/div[4]/div[1]/fieldset/span/span[1]/span/ul/li[1]").click()
 # dropdown = Select(driver.find_element(By.ID,"anormalidade"))
 # for opt in dropdown.options:
 #     dropdown.select_by_visible_text(opt.get_attribute("innerText")) 
@@ -139,8 +144,9 @@ while scheight < 35.9:
 time.sleep(10)    
 
 
-
+driver.save_full_page_screenshot("screenShoot_2024.png")
     
 
 
 #expandir = driver.find_element(By.XPATH, '//*[@id="expandir"]')
+

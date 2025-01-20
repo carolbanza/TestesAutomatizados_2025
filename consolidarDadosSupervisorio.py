@@ -14,6 +14,10 @@ from selenium.webdriver import ActionChains
 import selenium.webdriver.common.keys
 import requests
 from bs4 import BeautifulSoup
+import pdb
+import requests
+
+
 options = webdriver.FirefoxOptions()
 
 
@@ -90,15 +94,22 @@ time.sleep(10)
 time.sleep(10)
 ###################### DETALHAR CRONOGRAMA
 detalharCronograma = driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div/div[2]/form/div/div[2]/div[4]/div/div[2]/div/table/tbody/tr/td[3]/a").click()
-time.sleep(50)
+time.sleep(30)
+
+print(detalharCronograma)
+# # Coleta dados de um link <a href
+# rows = driver.find_elements(By.XPATH, "/html/body/div[1]/div[2]/div/div[2]/form/div/div[2]/div[4]/div/div[2]/div/table/tbody/tr/td[3]/a")
+# for row in rows:
+#     print(row.text)
 
 
 ############### CONSOLIDAR ENGRENAGEM API CONSOLIDAR DADOS SUPERVISÓRIO as vezes fora
 consolidarDadosEngrenagem = driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div/div[2]/form/div[1]/div[2]/div[2]/div/div[2]/table/tbody/tr[1]/td[9]/a").click()
-
+pdb.set_trace()
+driver.save_screenshot('consolidar1.png')
 time.sleep(10)
 
-############### OPTION SELECIONAR 
+############### OPTION SELECIONAR  
 driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div/div[2]/form/div/div[2]/div[2]/div/div[15]/select/option").click()
 
 ######## BUTTON EXECUTAR CONSOLIDAR DADOS
@@ -117,7 +128,7 @@ while i <= 5:
     i = i + 1
     
 
-############## LOOP PARA HEADER
+########################## LOOP PARA HEADER ##########################
 
 c = 1
 while c <= 10:
@@ -132,7 +143,7 @@ while c <= 10:
  ########### SCROLL SMOOTHLY 
  
 scheight = .1
-while scheight < 35.9:
+while scheight < 43.9:
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight/%s);" % scheight)
     scheight += .01
 # driver.execute_script("window.scrollTo(0, document.body.scrollHeight/3.4);")
@@ -164,5 +175,41 @@ while scheight < 35.9:
 # driver.execute_script("window.scrollTo(0, document.body.scrollHeight/3.7);")
 # time.sleep(0.2)
 # driver.execute_script("window.scrollTo(0, document.body.scrollHeight/50);")
-# time.sleep(10)        
+# time.sleep(10) 
+       
+# ALTERNATIVA AO ID
+#driver.execute_script('document.getElementById("submitMe").click()')
 
+#idGrupoFaturamento
+
+grupoFaturamento = driver.find_element(By.ID, "idGrupoFaturamento")
+selectGrupoFaturamento = Select(grupoFaturamento)
+selectGrupoFaturamento.select_by_value('1726')
+
+pesquisarResultadoFinal = driver.find_element(By.ID, "botaoPesquisar").click()
+
+time.sleep(10)
+
+######### LOOP PARA FOOTER
+i = 1
+while i <= 5:
+    
+    footer = driver.find_element(By.ID, "tableProcessos_info")
+    #footer = driver.execute_script('document.getElementById("tableProcessos_info")')
+    driver.execute_script("arguments[0].scrollIntoView();", footer)
+    print('It has scrolled ' + str(i) + ' times')
+    print('Now waiting 3 seconds before repeating')
+    time.sleep(5)
+    i = i + 1
+    
+
+############################### SCROLL SMOOTHLY 
+ 
+scheight = .1
+while scheight < 43.9:
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight/%s);" % scheight)
+    scheight += .01
+    
+driver.save_full_page_screenshot('consolidarSucesso.png')   
+
+time.sleep(20) 

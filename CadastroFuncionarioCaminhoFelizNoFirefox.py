@@ -131,7 +131,15 @@ driver.fullscreen_window()
 
 
 
-time.sleep(40)
+time.sleep(20)
+
+# get the body width and height
+
+full_width = driver.execute_script("return document.body.parentNode.scrollWidth")
+
+time.sleep(20)
+
+full_height = driver.execute_script("return document.body.parentNode.scrollHeight")
 
 ###### FECHANDO O NAVEGADOR
 
