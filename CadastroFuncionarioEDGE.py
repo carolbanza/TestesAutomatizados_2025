@@ -34,7 +34,7 @@ def cadastroFuncionario():
 
 # setando valores no form de Login
 
-  login.send_keys("caroline")
+  login.send_keys("caroline.qintess")
   senha.send_keys("Admin123")
 
 

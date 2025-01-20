@@ -31,7 +31,7 @@ print(title)
 
 # Encontrando a caixa de Login e realizando uma ação
 
-login = driver.find_element(By.ID, "login").send_keys("caroline")
+login = driver.find_element(By.ID, "login").send_keys("caroline.qintess")
 senha = driver.find_element(By.ID, "senha").send_keys("Admin123")
 button = driver.find_element(By.ID, "button3").click()
 
